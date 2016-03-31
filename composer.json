@@ -1,0 +1,22 @@
+{
+    "name": "starlit/observable",
+    "type": "library",
+    "description": "An implementation of the SplSubject interface.",
+    "keywords": ["SplSubject", "Observable", "Observer"],
+    "homepage": "http://github.com/starweb/starlit-observable",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Starweb / Ehandelslogik i Lund AB"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8"
+    },
+    "autoload": {
+      "psr-4": {"Starlit\\Observable\\": "src"}
+    }
+}
