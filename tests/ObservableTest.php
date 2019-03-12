@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Starlit\Observable\Tests;
 
@@ -24,7 +24,7 @@ class ObservableTest extends TestCase
         $this->observable = $this->getMockForAbstractClass(Observable::class);
     }
 
-    public function testAttach()
+    public function testAttach(): void
     {
         $this->observable->attach($this->observer);
 
@@ -35,7 +35,7 @@ class ObservableTest extends TestCase
         $this->observable->notify();
     }
 
-    public function testDetach()
+    public function testDetach(): void
     {
         $this->observable->attach($this->observer);
         $this->observable->detach($this->observer);
@@ -46,7 +46,7 @@ class ObservableTest extends TestCase
         $this->observable->notify();
     }
 
-    public function testDetachAll()
+    public function testDetachAll(): void
     {
         $this->observable->attach($this->observer);
         $this->observable->detachAll();
@@ -57,7 +57,7 @@ class ObservableTest extends TestCase
         $this->observable->notify();
     }
 
-    public function test__sleep()
+    public function test__sleep(): void
     {
         $this->assertEquals([], $this->observable->__sleep());
     }

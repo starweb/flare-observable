@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Observable.
  *
@@ -26,7 +26,7 @@ abstract class Observable implements SplSubject
      *
      * @param SplObserver $observer
      */
-    public function attach(SplObserver $observer)
+    public function attach(SplObserver $observer): void
     {
         $objectId = spl_object_hash($observer);
         $this->observers[$objectId] = $observer;
@@ -37,7 +37,7 @@ abstract class Observable implements SplSubject
      *
      * @param SplObserver $observer
      */
-    public function detach(SplObserver $observer)
+    public function detach(SplObserver $observer): void
     {
         $objectId = spl_object_hash($observer);
         unset($this->observers[$objectId]);
@@ -46,7 +46,7 @@ abstract class Observable implements SplSubject
     /**
      * Notify all of this object's observers.
      */
-    public function notify()
+    public function notify(): void
     {
         foreach ($this->observers as $observer) {
             $observer->update($this);
@@ -56,7 +56,7 @@ abstract class Observable implements SplSubject
     /**
      * Detaches all observers.
      */
-    public function detachAll()
+    public function detachAll(): void
     {
         $this->observers = [];
     }
@@ -66,7 +66,7 @@ abstract class Observable implements SplSubject
      *
      * @return array
      */
-    public function __sleep()
+    public function __sleep(): array
     {
         // We don't want observers to be serialized, since the reference to current objects are broken
         $allObjectProperties = array_keys(get_object_vars($this));
