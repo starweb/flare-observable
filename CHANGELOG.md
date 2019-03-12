@@ -8,8 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - CHANGELOG.md
 - strict type declarations to all classes (including tests)
-- type hinting for method parameters and return types
-- require `ext-mbstring` in composer.json
+- type hinting for return types
+- update phpunit version to 7.5 and refactor tests
 
 ## [0.1.0] - 2016-03-31
 ### Added
