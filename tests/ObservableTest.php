@@ -1,21 +1,35 @@
 <?php
 
-class ObservableTest extends \PHPUnit_Framework_TestCase
+namespace Starlit\Observable\Tests;
+
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
+use Starlit\Observable\Observable;
+
+class ObservableTest extends TestCase
 {
+    /**
+     * @var MockObject
+     */
     private $observer;
+
+    /**
+     * @var Observable
+     */
     private $observable;
 
     public function setUp()
     {
-        $this->observer = $this->getMock('\SplObserver');
-        $this->observable = $this->getMockForAbstractClass('\Starlit\Observable\Observable');
+        $this->observer = $this->createMock(\SplObserver::class);
+        $this->observable = $this->getMockForAbstractClass(Observable::class);
     }
 
     public function testAttach()
     {
         $this->observable->attach($this->observer);
 
-        $this->observer->expects($this->once())
+        $this->observer
+            ->expects($this->once())
             ->method('update');
 
         $this->observable->notify();
