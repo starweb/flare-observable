@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Updated
 - phpunit version to 7.5 and refactor tests
-- travic configuration
+- travis configuration
 
 ## [0.1.0] - 2016-03-31
 ### Added
