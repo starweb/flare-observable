@@ -1,27 +1,41 @@
-<?php
+<?php declare(strict_types=1);
 
-class ObservableTest extends \PHPUnit_Framework_TestCase
+namespace Starlit\Observable\Tests;
+
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
+use Starlit\Observable\Observable;
+
+class ObservableTest extends TestCase
 {
+    /**
+     * @var MockObject
+     */
     private $observer;
+
+    /**
+     * @var Observable
+     */
     private $observable;
 
     public function setUp()
     {
-        $this->observer = $this->getMock('\SplObserver');
-        $this->observable = $this->getMockForAbstractClass('\Starlit\Observable\Observable');
+        $this->observer = $this->createMock(\SplObserver::class);
+        $this->observable = $this->getMockForAbstractClass(Observable::class);
     }
 
-    public function testAttach()
+    public function testAttach(): void
     {
         $this->observable->attach($this->observer);
 
-        $this->observer->expects($this->once())
+        $this->observer
+            ->expects($this->once())
             ->method('update');
 
         $this->observable->notify();
     }
 
-    public function testDetach()
+    public function testDetach(): void
     {
         $this->observable->attach($this->observer);
         $this->observable->detach($this->observer);
@@ -32,7 +46,7 @@ class ObservableTest extends \PHPUnit_Framework_TestCase
         $this->observable->notify();
     }
 
-    public function testDetachAll()
+    public function testDetachAll(): void
     {
         $this->observable->attach($this->observer);
         $this->observable->detachAll();
@@ -43,7 +57,7 @@ class ObservableTest extends \PHPUnit_Framework_TestCase
         $this->observable->notify();
     }
 
-    public function test__sleep()
+    public function test__sleep(): void
     {
         $this->assertEquals([], $this->observable->__sleep());
     }
